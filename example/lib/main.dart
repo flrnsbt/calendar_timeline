@@ -60,6 +60,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             CalendarTimeline(
+              inactiveDayBackgroundColor: Colors.white10,
               initialDate: _selectedDate,
               spacing: 2,
               firstDate: DateTime.now(),

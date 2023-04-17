@@ -10,9 +10,13 @@ class DayItem extends StatelessWidget {
     this.isSelected = false,
     this.dayColor,
     this.showDots = false,
+    this.inactiveDayBackgroundColor,
     this.activeDayColor,
     this.activeDayBackgroundColor,
     this.available = true,
+    this.width = 60,
+    this.spacing = 0,
+    this.height = 70,
     this.dotsColor,
     this.dayNameColor,
     this.shrink = false,
@@ -22,8 +26,12 @@ class DayItem extends StatelessWidget {
   final String shortName;
   final bool isSelected;
   final Function onTap;
+  final double width;
+  final double height;
+  final double spacing;
   final Color? dayColor;
   final Color? activeDayColor;
+  final Color? inactiveDayBackgroundColor;
   final Color? activeDayBackgroundColor;
   final bool available;
   final Color? dotsColor;
@@ -49,15 +57,16 @@ class DayItem extends StatelessWidget {
     return GestureDetector(
       onTap: available ? onTap as void Function()? : null,
       child: Container(
-        decoration: isSelected
-            ? BoxDecoration(
-                color: activeDayBackgroundColor ??
-                    Theme.of(context).colorScheme.secondary,
-                borderRadius: BorderRadius.circular(12),
-              )
-            : const BoxDecoration(color: Colors.transparent),
-        height: shrink ? 40 : 70,
-        width: shrink ? 33 : 60,
+        margin: EdgeInsets.only(right: spacing),
+        decoration: BoxDecoration(
+          color: isSelected
+              ? (activeDayBackgroundColor ??
+                  Theme.of(context).colorScheme.secondary)
+              : (inactiveDayBackgroundColor ?? Colors.transparent),
+          borderRadius: BorderRadius.circular(12),
+        ),
+        height: shrink ? 40 : height,
+        width: shrink ? 33 : width,
         child: Column(
           children: <Widget>[
             if (isSelected) ...[

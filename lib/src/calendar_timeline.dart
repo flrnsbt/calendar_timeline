@@ -24,6 +24,9 @@ class CalendarTimeline extends StatefulWidget {
     this.leftMargin = 0,
     this.rightMargin = 0,
     this.spacing = 0,
+    this.dayWidth = 60,
+    this.dayHeight = 70,
+    this.daySpacing = 0,
     this.activeMonthColor,
     this.clampScroll = true,
     this.dayColor,
@@ -31,6 +34,7 @@ class CalendarTimeline extends StatefulWidget {
     this.activeBackgroundDayColor,
     this.monthColor,
     this.dotsColor,
+    this.inactiveDayBackgroundColor,
     this.showDots = false,
     this.dayNameColor,
     this.shrink = false,
@@ -64,12 +68,16 @@ class CalendarTimeline extends StatefulWidget {
   final OnDateSelected onDateSelected;
   final double leftMargin;
   final double rightMargin;
+  final double dayWidth;
+  final double dayHeight;
+  final double daySpacing;
   final Color? dayColor;
   final Color? activeDayColor;
   final Color? activeBackgroundDayColor;
   final Color? monthColor;
   final Color? dotsColor;
   final bool showDots;
+  final Color? inactiveDayBackgroundColor;
   final double spacing;
   final Color? dayNameColor;
   final Color? activeMonthColor;
@@ -462,6 +470,10 @@ class _CalendarTimelineState extends State<CalendarTimeline> {
           return Row(
             children: <Widget>[
               DayItem(
+                width: widget.dayWidth,
+                height: widget.dayHeight,
+                spacing: widget.daySpacing,
+                inactiveDayBackgroundColor: widget.inactiveDayBackgroundColor,
                 isSelected: _isSelectedDay(index),
                 dayNumber: currentDay.day,
                 shortName: shortName.length > 3
