@@ -22,7 +22,9 @@ class CalendarTimeline extends StatefulWidget {
     required this.onDateSelected,
     this.selectableDayPredicate,
     this.leftMargin = 0,
+    this.rightMargin = 0,
     this.activeMonthColor,
+    this.clampScroll = true,
     this.dayColor,
     this.activeDayColor,
     this.activeBackgroundDayColor,
@@ -60,16 +62,19 @@ class CalendarTimeline extends StatefulWidget {
   final SelectableDayPredicate? selectableDayPredicate;
   final OnDateSelected onDateSelected;
   final double leftMargin;
+  final double rightMargin;
   final Color? dayColor;
   final Color? activeDayColor;
   final Color? activeBackgroundDayColor;
   final Color? monthColor;
   final Color? dotsColor;
   final bool showDots;
+
   final Color? dayNameColor;
   final Color? activeMonthColor;
   final bool shrink;
   final String? locale;
+  final bool clampScroll;
 
   /// If true, it will show a separate row for the years.
   /// It defaults to false
@@ -355,7 +360,8 @@ class _CalendarTimelineState extends State<CalendarTimeline> {
                   small: false,
                   shrink: widget.shrink,
                 ),
-                if (index == _years.length - 1)
+                SizedBox(width: widget.rightMargin),
+                if (index == _years.length - 1 && !widget.clampScroll)
                   // Last element to take space to do scroll to left side
                   SizedBox(
                     width: MediaQuery.of(context).size.width -
@@ -414,7 +420,8 @@ class _CalendarTimelineState extends State<CalendarTimeline> {
                   activeColor: widget.activeMonthColor ??
                       widget.activeBackgroundDayColor,
                 ),
-                if (index == _months.length - 1)
+                SizedBox(width: widget.rightMargin),
+                if (index == _months.length - 1 && !widget.clampScroll)
                   // Last element to take space to do scroll to left side
                   SizedBox(
                     width: MediaQuery.of(context).size.width -
@@ -465,7 +472,8 @@ class _CalendarTimelineState extends State<CalendarTimeline> {
                 dayNameColor: widget.dayNameColor,
                 shrink: widget.shrink,
               ),
-              if (index == _days.length - 1)
+              SizedBox(width: widget.rightMargin),
+              if (index == _days.length - 1 && !widget.clampScroll)
                 // Last element to take space to do scroll to left side
                 SizedBox(
                   width: MediaQuery.of(context).size.width -
