@@ -23,6 +23,7 @@ class CalendarTimeline extends StatefulWidget {
     this.selectableDayPredicate,
     this.leftMargin = 0,
     this.rightMargin = 0,
+    this.spacing = 0,
     this.activeMonthColor,
     this.clampScroll = true,
     this.dayColor,
@@ -69,7 +70,7 @@ class CalendarTimeline extends StatefulWidget {
   final Color? monthColor;
   final Color? dotsColor;
   final bool showDots;
-
+  final double spacing;
   final Color? dayNameColor;
   final Color? activeMonthColor;
   final bool shrink;
@@ -322,8 +323,12 @@ class _CalendarTimelineState extends State<CalendarTimeline> {
       mainAxisAlignment: MainAxisAlignment.center,
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        if (widget.showYears) _buildYearList(),
+        if (widget.showYears) ...[
+          _buildYearList(),
+          SizedBox(height: widget.spacing)
+        ],
         _buildMonthList(),
+        SizedBox(height: widget.spacing),
         _buildDayList(),
       ],
     );
