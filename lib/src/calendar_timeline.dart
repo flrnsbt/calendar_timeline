@@ -22,6 +22,7 @@ class CalendarTimeline extends StatefulWidget {
     required this.onDateSelected,
     this.selectableDayPredicate,
     this.leftMargin = 0,
+    this.activeMonthColor,
     this.dayColor,
     this.activeDayColor,
     this.activeBackgroundDayColor,
@@ -66,6 +67,7 @@ class CalendarTimeline extends StatefulWidget {
   final Color? dotsColor;
   final bool showDots;
   final Color? dayNameColor;
+  final Color? activeMonthColor;
   final bool shrink;
   final String? locale;
 
@@ -409,7 +411,8 @@ class _CalendarTimelineState extends State<CalendarTimeline> {
                   onTap: () => _onSelectMonth(index),
                   color: widget.monthColor,
                   shrink: widget.shrink,
-                  activeColor: widget.activeBackgroundDayColor,
+                  activeColor: widget.activeMonthColor ??
+                      widget.activeBackgroundDayColor,
                 ),
                 if (index == _months.length - 1)
                   // Last element to take space to do scroll to left side
