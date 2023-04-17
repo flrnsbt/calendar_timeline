@@ -9,6 +9,7 @@ class DayItem extends StatelessWidget {
     required this.onTap,
     this.isSelected = false,
     this.dayColor,
+    this.showDots = false,
     this.activeDayColor,
     this.activeDayBackgroundColor,
     this.available = true,
@@ -17,6 +18,7 @@ class DayItem extends StatelessWidget {
     this.shrink = false,
   }) : super(key: key);
   final int dayNumber;
+  final bool showDots;
   final String shortName;
   final bool isSelected;
   final Function onTap;
@@ -60,7 +62,7 @@ class DayItem extends StatelessWidget {
           children: <Widget>[
             if (isSelected) ...[
               SizedBox(height: shrink ? 6 : 7),
-              if (!shrink) _buildDots(),
+              if (!shrink && showDots) _buildDots(),
               SizedBox(height: shrink ? 9 : 12),
             ] else
               SizedBox(height: shrink ? 10 : 14),

@@ -27,6 +27,7 @@ class CalendarTimeline extends StatefulWidget {
     this.activeBackgroundDayColor,
     this.monthColor,
     this.dotsColor,
+    this.showDots = false,
     this.dayNameColor,
     this.shrink = false,
     this.locale,
@@ -63,6 +64,7 @@ class CalendarTimeline extends StatefulWidget {
   final Color? activeBackgroundDayColor;
   final Color? monthColor;
   final Color? dotsColor;
+  final bool showDots;
   final Color? dayNameColor;
   final bool shrink;
   final String? locale;
